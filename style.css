@@ -113,6 +113,8 @@ img{
 }
 /*Questions*/
 .questionContainer{
+    order:3;
+
     border: 2px solid #6A9AB0;
     border-radius: 30px;
 
@@ -144,9 +146,16 @@ img{
 .question{
    text-align: center;
 }
-.answersContainer{
-
+.questionContainer.correct{
+    border-color: #109648;
 }
+.questionContainer.wrong{
+    border-color: #c33149;
+}
+.questionContainer.empty{
+    border-color: gray;
+}
+
 .answer{
     margin: 0.5em;
     padding: 0.25em 1em;
@@ -168,8 +177,20 @@ img{
     background-color: #EAD8B1;
     color: #3A6D8C;
 }
+.answer.correct{
+    border-color: #109648;
+    background-color: #109648;
+    color: #001F3F;
+}
+.answer.wrong{
+    border-color: #c33149;
+    background-color: #c33149;
+    color: #001F3F;
+}
 
 #endQuizContainer{
+    order: 99;
+
     margin: 1em 1em;
     padding: 0.5em 1em;
 
@@ -188,6 +209,32 @@ img{
    background-color: #EAD8B1;
    color: #001F3F;
 
+}
+.resultsContainer{
+    padding: 0.5em 1em;
+    margin: 1em 1em;
+
+    border: 2px solid #3A6D8C;
+    border-radius: 20px;
+  
+
+
+}
+
+.correctResult{
+    margin: 0.25em 0.5em;
+
+    color: #109648;
+}
+.wrongResult{
+    margin: 0.25em 0.5em;
+
+    color: #c33149;
+}
+.emptyResult{
+    margin: 0.25em 0.5em;
+
+    color: gray;
 }
 /*Animatons*/
 @keyframes fadeIn {

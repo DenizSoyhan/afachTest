@@ -1,13 +1,99 @@
 const allTheQuestions = [
-    ["Hop yukarıdaki nedir kral?", "images/BA1CBhu-doom-wallpaper.png", "A.Sanane?", "B.Banane", "C.Saman Ye", "D.Dön de başka bi şey ye", "C"],
+    ["Hop yukarıdaki nedir kral?", "images/BA1CBhu-doom-wallpaper.png", "A.Sanane?", "B.Banane", "C.Saman Ye", "D.Dön de başka bi şey ye", "A"],
+    ["Hop yukarıdaki nedir kral? Bu soruyu uzatmaya çalışıyom bakalım neler olacak allah allah", "images/LGpnKBM-dota-2-wallpapers.jpg", "A.Sanane?", "B.Banane", "C.Saman Ye", "D.Dön de başka bi şey ye", "B"],
     ["Hop yukarıdaki nedir kral? Bu soruyu uzatmaya çalışıyom bakalım neler olacak allah allah", "images/LGpnKBM-dota-2-wallpapers.jpg", "A.Sanane?", "B.Banane", "C.Saman Ye", "D.Dön de başka bi şey ye", "C"],
-    ["Hop yukarıdaki nedir kral? Bu soruyu uzatmaya çalışıyom bakalım neler olacak allah allah", "images/LGpnKBM-dota-2-wallpapers.jpg", "A.Sanane?", "B.Banane", "C.Saman Ye", "D.Dön de başka bi şey ye", "C"],
-    ["Hop yukarıdaki nedir kral? sanırın az önceki yeterince uzun oldu", "", "A.Sanane?", "B.Banane", "C.Saman Ye", "D.Dön de başka bi şey ye", "C"]
+    ["Hop yukarıdaki nedir kral? sanırın az önceki yeterince uzun oldu", "", "A.Sanane?", "B.Banane", "C.Saman Ye", "D.Dön de başka bi şey ye", "D"]
 
 ]
 
 const startQuizButton = document.getElementById('startQuizContainer');
 const allQuestionsContainer = document.querySelector('.allQuestionsContainer');
+
+var resultsExist=0;
+
+
+/*CREATES RESULTS BOX HERE*/
+const resultsContainer = document.createElement('div');
+resultsContainer.classList.add('resultsContainer');
+
+const correctResult = document.createElement('div');
+correctResult.classList.add('correctResult');
+resultsContainer.appendChild(correctResult);
+
+const wrongResult = document.createElement('div');
+wrongResult.classList.add('wrongResult');
+resultsContainer.appendChild(wrongResult);
+
+const emptyResult = document.createElement('div');
+emptyResult.classList.add('emptyResult');
+resultsContainer.appendChild(emptyResult);
+/*END OF RESULTS BOX*/
+
+
+function checkQuestions(){
+    const answerClusters = document.querySelectorAll(".answersContainer");
+    let singleCluster;
+    let correctCounter=0;
+    let wrongCounter=0;
+    let emptyCounter=0;
+
+    //purge every thing first
+    for(let i = 0; i<answerClusters.length;i++){
+        singleCluster=answerClusters[i].children;
+        let ownerContainer = answerClusters[i].parentElement;
+        for(let k = 0;k<singleCluster.length;k++){
+            singleCluster[k].classList.remove('wrong');
+            singleCluster[k].classList.remove('correct');
+            ownerContainer.classList.remove('wrong');
+            ownerContainer.classList.remove('correct');
+            ownerContainer.classList.remove('empty');
+            
+        }
+    }
+
+    for(let i = 0; i<answerClusters.length;i++){
+        let empty=1;
+        singleCluster=answerClusters[i].children;
+        let ownerContainer = answerClusters[i].parentElement;
+        console.log("ney:",ownerContainer);
+        console.log(singleCluster);
+        for(let k = 0;k<singleCluster.length;k++){
+            let checkingAnswer=singleCluster[k].textContent[0];
+            if(singleCluster[k].classList.contains('selected') && checkingAnswer==allTheQuestions[i][allTheQuestions[i].length-1]){
+
+                singleCluster[k].classList.add('correct');
+                ownerContainer.classList.add('correct');
+                correctCounter++;
+                empty=0;
+            }else if(singleCluster[k].classList.contains('selected') && !(checkingAnswer==allTheQuestions[i][allTheQuestions[i].length-1])){
+
+                singleCluster[k].classList.add('wrong');
+                ownerContainer.classList.add('wrong');
+                wrongCounter++;
+                empty=0;
+            }else{
+                continue;
+            }
+        }
+
+        if(empty){
+            emptyCounter++;
+            ownerContainer.classList.add('empty');
+        }
+    }
+
+    if(!resultsExist){
+        allQuestionsContainer.appendChild(resultsContainer);
+        resultsExist=1;
+    }
+    
+    correctResult.textContent=`Doğru sayısı: ${correctCounter}`;
+    wrongResult.textContent = `Yanlış sayısı: ${wrongCounter}`;
+    emptyResult.textContent=`Boş sayısı: ${emptyCounter}`;
+
+}
+
+
 
 function createQuestions() {
     for (let i = 0; i < allTheQuestions.length; i++) {
@@ -56,7 +142,7 @@ function createQuestions() {
 
     allQuestionsContainer.appendChild(endQuizButton);
 
-
+    endQuizButton.addEventListener("click",()=>checkQuestions());
    
 }
 //HORRIBLE SOLUTION THAT OVERRIDES HOVER CLASSES
@@ -126,9 +212,6 @@ startQuizButton.addEventListener('click', function () {
 
         makeAnswersInteractive();
     });
-
-
-
 
 });
 
