@@ -1,3 +1,6 @@
+html{
+    scroll-behavior: smooth; /*to make endQuiz go up smoother*/
+}
 body{
     margin: 0;
     padding: 0;
@@ -87,6 +90,8 @@ img{
     animation-fill-mode: backwards;
     animation-delay: 1s;
     transition: ease-in;
+
+    transition: color 0.2s, background-color 0.2s, border 0.2s;
 }
 
 #startQuizContainer:hover{
@@ -162,6 +167,27 @@ img{
     border-color: #EAD8B1;
     background-color: #EAD8B1;
     color: #3A6D8C;
+}
+
+#endQuizContainer{
+    margin: 1em 1em;
+    padding: 0.5em 1em;
+
+    border: 2px solid #6A9AB0;
+    border-radius: 20px;
+    
+    font-weight: 700;
+    text-decoration: inherit;
+
+    color: #EAD8B1;
+
+    transition: 0.3s ease-in;
+
+}
+#endQuizContainer:hover{
+   background-color: #EAD8B1;
+   color: #001F3F;
+
 }
 /*Animatons*/
 @keyframes fadeIn {

@@ -46,9 +46,18 @@ function createQuestions() {
 
         allQuestionsContainer.appendChild(questionContainer);
 
+        
     }
 
+    let endQuizButton = document.createElement('a');
+    endQuizButton.setAttribute("id","endQuizContainer");
+    endQuizButton.textContent= "Testi Bitir!";
+    endQuizButton.href="#";
 
+    allQuestionsContainer.appendChild(endQuizButton);
+
+
+   
 }
 //HORRIBLE SOLUTION THAT OVERRIDES HOVER CLASSES
 /*function chooseAnswer(answer) {
