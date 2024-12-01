@@ -1,5 +1,7 @@
 html{
     scroll-behavior: smooth; /*to make endQuiz go up smoother*/
+
+    height: 100%;
 }
 body{
     margin: 0;
@@ -7,11 +9,18 @@ body{
 
     background-color: #001F3F;
 
-    font-family: 'Lato';
+    font-family: sans-serif, monospace;
     font-size: 1.5rem;
     
 
     color: #EAD8B1;
+
+    min-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+  
 }
 
 h1{
@@ -22,6 +31,19 @@ h1{
 
     color: #EAD8B1;
     letter-spacing: 2px;
+}
+
+footer {
+    background-color: #333;
+    color: #EAD8B1;
+    padding: 1em;
+
+    margin-top: auto;
+
+    animation-name: fadeInFromBottom;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition: ease-in;
 }
 
 @media (max-width:600px) {
@@ -37,7 +59,7 @@ h1{
     
 }
 img{
-    width: 70%;
+    width: 100%;
     margin: 0.5em auto;
 }
 .container{
@@ -145,6 +167,7 @@ img{
 }
 .question{
    text-align: center;
+   font-size: 1rem;
 }
 .questionContainer.correct{
     border-color: #109648;
@@ -165,6 +188,8 @@ img{
 
     cursor: pointer;
     transition: background-color 0.5s, color 0.5s ;
+
+    font-size: 1rem;
 }
 .answer:hover{
     
@@ -236,6 +261,91 @@ img{
 
     color: gray;
 }
+.divider{
+    min-height: 100px;
+    border: 1px solid #6A9AB0;
+    opacity: 0.3;
+    margin: 0 1em;
+}
+#footContainer{
+    width: 100%;
+    flex-direction: row;
+
+    justify-content: space-evenly;
+}
+.afachContainer{
+    width: 40%;
+
+   padding: 0.25em 0.25em;
+   margin-left: 0.5em;
+
+   display: flex;
+   flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    
+}
+.denizContainer{
+    width: 40%;
+
+    padding: 0.25em 0.25em;
+    margin-right: 0.5em;
+
+    display: flex;
+    flex-direction: column;
+ 
+    justify-content: center;
+    align-items: center;
+ 
+    
+}
+.footTitle{
+    font-size: 0.75rem;
+
+    color: #EAD8B1;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 0.25em;
+
+    min-width: 180px;
+
+    white-space: nowrap
+}
+@media (min-width:900px) {
+    .footTitle{
+        font-size: 1.5rem;
+    
+    }
+}
+.footName{
+    margin-bottom: 0.3em;
+    text-align: center;
+    color: #6A9AB0;
+
+    white-space: nowrap;
+}
+.footLogosContainer{
+    display: flex;
+
+    padding: 0 1em;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.footLogosContainer i{
+    margin: 0 0.5em;
+
+    font-size: 2rem;
+    cursor: pointer;
+
+    color: #6A9AB0;
+    text-decoration: none !important;
+}
+
 /*Animatons*/
 @keyframes fadeIn {
     from{
