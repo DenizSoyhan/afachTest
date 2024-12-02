@@ -75,7 +75,10 @@ img{
     display: none;
 }
 /*Title*/
-
+#time{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 3rem;
+}
 .titleContainer{
     animation-name: fromTop;
     animation-duration: 2s;
