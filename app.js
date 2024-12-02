@@ -50,6 +50,7 @@ function checkQuestions(){
         for(let k = 0;k<singleCluster.length;k++){
             singleCluster[k].classList.remove('wrong');
             singleCluster[k].classList.remove('correct');
+            singleCluster[k].classList.remove('couldHaveBeenCorrect');
             ownerContainer.classList.remove('wrong');
             ownerContainer.classList.remove('correct');
             ownerContainer.classList.remove('empty');
@@ -61,7 +62,8 @@ function checkQuestions(){
         let empty=1;
         singleCluster=answerClusters[i].children;
         let ownerContainer = answerClusters[i].parentElement;
-
+        console.log(singleCluster);
+        console.log(ownerContainer);
         for(let k = 0;k<singleCluster.length;k++){
             let checkingAnswer=singleCluster[k].textContent[0];
             if(singleCluster[k].classList.contains('selected') && checkingAnswer==allTheQuestions[i][allTheQuestions[i].length-1]){
@@ -76,7 +78,11 @@ function checkQuestions(){
                 ownerContainer.classList.add('wrong');
                 wrongCounter++;
                 empty=0;
-            }else{
+            }else if(checkingAnswer==allTheQuestions[i][allTheQuestions[i].length-1]){
+                singleCluster[k].classList.add('couldHaveBeenCorrect');
+                ownerContainer.classList.add('couldHaveBeenCorrect');
+            }   
+            else{
                 continue;
             }
         }
@@ -171,13 +177,13 @@ function chooseAnswer(answer) {
 }
 function makeAnswersInteractive() {
     var allOptions = document.querySelectorAll('.answersContainer');
-    console.log(allOptions);
+
     for (let i = 0; i < allOptions.length; i++) {
 
         for (let k = 0; k < allOptions[i].children.length; k++) {
             
             let answerButton = allOptions[i].children[k];
-            console.log(answerButton);
+
             answerButton.addEventListener('click', ()=>chooseAnswer(answerButton)
             )
         }
