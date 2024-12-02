@@ -1,10 +1,16 @@
 const allTheQuestions = [
-    ["Hop yukarıdaki nedir kral?", "images/BA1CBhu-doom-wallpaper.png", "A.Sanane?", "B.Banane", "C.Saman Ye", "D.Dön de başka bi şey ye", "A"],
-    ["Hop yukarıdaki nedir kral? Bu soruyu uzatmaya çalışıyom bakalım neler olacak allah allah", "images/LGpnKBM-dota-2-wallpapers.jpg", "A.Sanane?", "B.Banane", "C.Saman Ye", "D.Dön de başka bi şey ye", "B"],
-    ["Hop yukarıdaki nedir kral? Bu soruyu uzatmaya çalışıyom bakalım neler olacak allah allah", "images/LGpnKBM-dota-2-wallpapers.jpg", "A.Sanane?", "B.Banane", "C.Saman Ye", "D.Dön de başka bi şey ye", "C"],
-    ["Hop yukarıdaki nedir kral? sanırın az önceki yeterince uzun oldu", "", "A.Sanane?", "B.Banane", "C.Saman Ye", "D.Dön de başka bi şey ye", "D"]
-
+    ["Bilkent Time'ının kurucusu kimdir?", "images/1.png", "A.Borsa Kaplanı(@borsakaplani888)", "B.yunus (@yunusutkuu)", "C.topaç(@chakma_maker)", "D.sadece tunus (@luthienll)", "B"],
+    ["Aşağıdakilerden hangisi Twitter Bilkent Time'ının modlarından biri değildir?", "images/2.png", "A.kayra (@sivilkayra)", "B.sadece tunus (@luthienll)", "C.marul (@marulaton)", "D.özerhisar ayranı (@gurosome)", "D"],
+    ["Bilkent Time sayfasını hangi usta yazılımcı hazırlamıştır?", "images/3.png", "A.Bill Gates?", "B.Steve Wozniak", "C.Oğul Deniz Soyhan", "D.Larry Page", "C"],
+    ["Abdullah Atalar'ın attığı tweet'e göre Uluslararası İlişkiler 2007 mezunu Melike İpek Yalova, Muhteşem Yüzyıl dizisinde hangi karakteri oynamaktadır?.", "images/4.jpg", "A.Kastilya Prensesi İsabella", "B.Manuliye Prensi Çar 2. Safavoiç", "C.Safsatunya Krallığı Canavarı", "D.Sultan Süleyman", "A"],
+    ["C amfiye gitmek isteyen biri hangi binaya gitmelidir?", "images/5.jpg", "A.B binası", "B.C binası", "C.D binası", "D.T binası", "D"],
+    ["Behzat Ç.'nin bir bölümünde Bilkent öğrencileri neyi protesto etmektedir?", "images/6.jpg", "A.Yemekhane zamlarını", "B.MATH 102 sınavlarını", "C.Ring seferlerini", "D.Depremden- tatil olmayan okulu", "A"],
+    ["Bilkent Time'a atılan bir tweet'e göre büyük şirketler aşağıdaki sırlardan hangisini bilmenizi istemiyordur?", "images/7.png", "A.Belirsiz aralıklarla yemekhanede çıkan dönerin hangi hayvan etinden olduğunu", "B.Belirli aralıklarla yemekhanede 2 kez yemek yenilebildiğini", "C.Final tarihlerinin hangi belirli aralıkta olduğunu", "D.Belirsiz aralıkların belirliliği teorisini", "B"],
+    ["Kampüsten Bilmarket'e giden yolda, biraz ilerleyince sağ köşede kalan mekanın ismi nedir? ", "images/8.jpg", "A.Piel Roja", "B.Maydonoz DÖner", "C.Federal", "D.Central", "D"],
+    ["eduroam wifi ağına bağlanırken kullanıcı adınız default olarak nedir?", "images/9.png", "A.isim.soyisim@ug.bilkent.edu.tr", "B.isim.soyisim@bilkent.edu.tr", "C.idnumarası@bilkent.edu.tr", "D.Yalnız ID numaranız", "C"],
+    ["Aşağıdaki EGO otobüslerinden hangisi son zamanlarda rotasını Bilkent Üniversitesinin birçoğunu dolaşacak şekilde ayarlamıştır?", "images/10.jpg", "A.176", "B.175", "C.111", "D.171", "A"],
 ]
+
 
 const startQuizButton = document.getElementById('startQuizContainer');
 const allQuestionsContainer = document.querySelector('.allQuestionsContainer');
@@ -55,8 +61,7 @@ function checkQuestions(){
         let empty=1;
         singleCluster=answerClusters[i].children;
         let ownerContainer = answerClusters[i].parentElement;
-        console.log("ney:",ownerContainer);
-        console.log(singleCluster);
+
         for(let k = 0;k<singleCluster.length;k++){
             let checkingAnswer=singleCluster[k].textContent[0];
             if(singleCluster[k].classList.contains('selected') && checkingAnswer==allTheQuestions[i][allTheQuestions[i].length-1]){
@@ -120,12 +125,15 @@ function createQuestions() {
         let answersContainer = document.createElement('div');
         answersContainer.classList.add('answersContainer');
 
-        for (let i = 0; i < 4; i++) {
-            let answer = document.createElement('div');
-            answer.classList.add('answer');
-            answer.textContent = allTheQuestions[i][2 + i];
-            answersContainer.appendChild(answer);
+   
+        for(let k =0;k < 4;k++){
+        let answer = document.createElement('div');
+        answer.classList.add('answer');
+        answer.textContent = allTheQuestions[i][2 + k];
+        answersContainer.appendChild(answer);
         }
+            
+        
 
         questionContainer.appendChild(questionContents);
         questionContainer.appendChild(answersContainer);
@@ -145,34 +153,7 @@ function createQuestions() {
     endQuizButton.addEventListener("click",()=>checkQuestions());
    
 }
-//HORRIBLE SOLUTION THAT OVERRIDES HOVER CLASSES
-/*function chooseAnswer(answer) {
 
-    if(window.getComputedStyle(answer).borderColor !='rgb(58, 109, 140)'){//unchoose option
-        console.log("renk aynı değil" ,window.getComputedStyle(answer).borderColor )
-
-        answer.style.borderColor='rgb(58, 109, 140)'
-        answer.style.backgroundColor = '#001F3F';
-        answer.style.color = '#EAD8B1';
-        
-    }else{
-
-        for(let i=0;i<answer.parentElement.children.length;i++){ //Make other answers normal
-            if(window.getComputedStyle(answer.parentElement.children[i]).borderColor == 'rgb(58, 109, 140)')
-            {
-                continue;
-            }else{
-                answer.parentElement.children[i].style.borderColor='rgb(58, 109, 140)'
-                answer.parentElement.children[i].style.backgroundColor = '#001F3F';
-                answer.parentElement.children[i].style.color= '#EAD8B1';
-            }
-        }   //choose own answer
-            answer.style.borderColor = '#EAD8B1';
-            answer.style.backgroundColor = '#EAD8B1';
-            answer.style.color = '#3A6D8C';
-    }
-
-}*/
 function chooseAnswer(answer) {
     
     if (!answer.classList.contains('selected')) {//if any other sibling is selected
@@ -190,11 +171,13 @@ function chooseAnswer(answer) {
 }
 function makeAnswersInteractive() {
     var allOptions = document.querySelectorAll('.answersContainer');
-
+    console.log(allOptions);
     for (let i = 0; i < allOptions.length; i++) {
 
-        for (let k = 0; k < allOptions.length; k++) {
+        for (let k = 0; k < allOptions[i].children.length; k++) {
+            
             let answerButton = allOptions[i].children[k];
+            console.log(answerButton);
             answerButton.addEventListener('click', ()=>chooseAnswer(answerButton)
             )
         }
