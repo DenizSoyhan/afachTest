@@ -17,7 +17,25 @@ const allQuestionsContainer = document.querySelector('.allQuestionsContainer');
 
 var resultsExist=0;
 
+/*Modal Interactivity*/
+const hayvanDostlariButton = document.querySelector(".hayvanDostlari");
+const modalContainer = document.getElementById("modalContainer");
 
+hayvanDostlariButton.addEventListener('click',function(){
+
+    modalContainer.style.display='block';
+});
+
+
+closeButton.addEventListener('click',function(){
+    modalContainer.style.display='none';
+})
+window.addEventListener('click',function(e){
+    
+    if(e.target === modalContainer){
+        modalContainer.style.display='none';
+    }
+})
 /*CREATES RESULTS BOX HERE*/
 const resultsContainer = document.createElement('div');
 resultsContainer.classList.add('resultsContainer');

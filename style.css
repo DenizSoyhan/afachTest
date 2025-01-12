@@ -80,6 +80,8 @@ img{
     font-size: 3rem;
 }
 .titleContainer{
+    position: relative;
+
     animation-name: fromTop;
     animation-duration: 2s;
     animation-fill-mode: forwards;
@@ -89,15 +91,190 @@ img{
 
  
 }
+.hayvanDostlari{
+    font-size: 2rem;
+
+    position: absolute;
+    right: 5%;
+    top: 10%;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+.hayvanDostlari:hover{
+    color: #3A6D8C;
+
+}
+
 .title{
     padding: 0.5em 1em;
 }
 .subTitle{
     color: #6A9AB0;
 }
+/*MODAL*/
+#modal{
+    background-color: white;
+    position: relative;
+    max-width: 350px;
+    max-height: 300px;
+
+    min-width: 300px;
+    min-height: 280px;
+
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    width: 30%;
+    height: 40%;
+
+    box-shadow: 0px 0px 11px 6px #EAD8B1;
+
+    padding: 30px 20px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+
+    display: flex;
+
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    animation-name: animatemodal;
+    animation-duration: 1s;
+
+    
+
+}
+#modal a{
+    text-decoration: none !important;
+
+    color: rgb(155, 6, 6);
+}
+#modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    background-image: url('images/siteImages/modalCat.jpeg');
+    background-size: 100% 100%;
+    background-position: center;
+    filter: blur(1px); 
+    z-index: -1; /*background stays behind the content */
+}
+
+
+#closeButton{
+    position: absolute;
+    
+    top:-5px;
+    left: 88%;
+
+    cursor: pointer;
+    font-size: 3rem;
+    color: red;
+}
+@media (max-width:500px) {
+    #closeButton{
+        top: -8px;
+    }
+}
+#modalContainer{
+display: block;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+
+z-index: 1;
+background-color: rgba(0, 0, 0, .4);
+
+
+}
+
+.infoText{
+    position: relative; 
+    display: inline-block; 
+    z-index: 1; /* Keep the text above the pseudo-element */
+    color: black;
+
+    margin: 2em 0 1em 0;
+    padding: 0.5em 0.5em;
+
+
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    text-align: center;
+
+}
+.infoContainer a{
+    height: 100%;
+}
+.infoText::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
+    backdrop-filter: blur(3px); 
+    z-index: -1; /* Place the blur effect behind the text */
+    border-radius: 8px; 
+}
+#instaButton{
+    position: relative;
+    display: inline-block;
+
+    padding: 0.1em 0.20em 0.1em 0.25em;
+
+    margin-bottom: 1em;
+}
+#instaButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.25); 
+    backdrop-filter: blur(10px); 
+    z-index: -1; /* the pseudo-element behind the icon */
+    border-radius: 8px;
+    pointer-events: none; /* blured section doesn’t interfere with button interaction */
+}
+#instaButton i{
+    text-align: center;
+    font-size: 5rem;
+ 
+    
+
+    text-decoration: none !important;
+
+    color: #313131;
+}
+@keyframes animatemodal {
+    from{
+        top: -500px;
+     
+        opacity: 0;
+    }
+
+    to {
+        top: 70%;
+        opacity: 1;
+    }
+}
 /*Start the quiz*/
 #startQuizContainer{
-    margin: 4em 1em;
+    margin: 3em 1em;
     padding: 0.5em 1em;
 
     font-weight: 700;
